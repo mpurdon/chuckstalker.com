@@ -232,7 +232,7 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 .widget { pointer-events: none; user-select: none; }
 .w-abs { position: absolute; }
 
-.w-shorsey { right: 6%; bottom: 14%; width: 195px; opacity: .6; transform: rotate(2deg); }
+.w-shorsey { right: 6%; bottom: 14%; width: 185px; opacity: .65; transform: rotate(2deg); }
 
 .dossier-card .ribbons-img { width: min(320px, 70%); opacity: .8; margin-bottom: 1.5rem; }
 .w-compass { top: 2rem; right: 2.5rem; width: 120px; opacity: .4; transform: rotate(-3deg); }
