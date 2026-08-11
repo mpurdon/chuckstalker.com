@@ -234,12 +234,18 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 
 .w-shorsey { right: 6%; bottom: 14%; width: 185px; opacity: .65; transform: rotate(2deg); }
 
-.dossier-card { display: grid; grid-template-columns: minmax(0, 1fr) clamp(240px, 34%, 380px); gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+/* two-column only in the dossier itself — the 404 reuses .dossier-card
+   purely for its plate padding and must stay single-column */
+#dossier .dossier-card { display: grid; grid-template-columns: minmax(0, 1fr) clamp(240px, 34%, 380px); gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
 .dossier-card .ribbons-img { width: min(320px, 70%); opacity: .8; margin-bottom: 1.5rem; }
 .dogtags { width: 100%; filter: drop-shadow(0 14px 26px rgba(0, 0, 0, .55)); }
 
 .lkp-break { display: flex; justify-content: center; padding-block: 0 1rem; }
 .lkp-standalone { width: min(330px, 78%); opacity: .7; }
+
+/* section divider between gallery and comms */
+.tooclose-break { display: flex; justify-content: center; padding-block: clamp(1rem, 3vw, 2rem); }
+.tooclose-standalone { width: min(200px, 55%); opacity: .8; transform: rotate(-1.5deg); }
 
 .w-wheel { top: 4.5rem; right: 1rem; width: 180px; opacity: .55; transform: rotate(-2deg); }
 /* the stamp row closes out the loadout section: give it room to breathe under
@@ -274,6 +280,6 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
   .masthead .nav-right { grid-area: right; }
   .hero { min-height: 0; }
   .hero .lockup { max-height: 52vh; }
-  .dossier-card { grid-template-columns: 1fr; }
+  #dossier .dossier-card { grid-template-columns: 1fr; }
   .dogtags { max-width: 320px; margin-inline: auto; }
 }
