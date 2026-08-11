@@ -208,8 +208,11 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); position: relative; }
 .slot .label { font-family: var(--font-stencil); font-size: .6rem; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-muted); }
 
 /* ============ comms ============ */
-.comms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem; max-width: 52rem; }
-.comm { display: block; text-decoration: none; padding: 1.5rem 1.6rem; }
+/* callsign / profile cards / frequency all ride one row; the grid carries the
+   flex-grow so the stamps keep their size and the cards absorb the slack */
+.comms-row { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.25rem); flex-wrap: wrap; }
+.comms-grid { flex: 1 1 22rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 1rem; }
+.comm { display: block; text-decoration: none; padding: 1.25rem 1.3rem; }
 .comm .svc { font-family: var(--font-stencil); font-size: .95rem; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-primary); }
 .comm .handle { display: block; margin-top: .45rem; font-size: .88rem; color: var(--text-muted); }
 .comm:hover { border-color: var(--accent-deep); }
@@ -265,11 +268,10 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 .slot .squatch { width: 150px; opacity: .55; }
 .slot .seen { width: 110px; opacity: .65; transform: rotate(-2deg); }
 
-/* callsign and frequency sit as a flow row, not absolutes — the section's
+/* callsign and frequency sit in normal flow, not absolutes — the section's
    padding changes shouldn't be able to knock them out of position */
-.comms-head { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-.w-freq { width: 160px; opacity: .6; transform: rotate(2deg); }
-.w-callsign { width: 210px; opacity: .75; }
+.w-freq { width: clamp(120px, 13vw, 155px); opacity: .6; transform: rotate(2deg); flex: 0 0 auto; }
+.w-callsign { width: clamp(150px, 16vw, 200px); opacity: .75; flex: 0 0 auto; }
 
 .w-404 { width: 84px; opacity: .7; margin-inline: auto; margin-bottom: 1rem; }
 .w-tooclose { width: 160px; opacity: .65; margin-inline: auto; margin-top: 2rem; transform: rotate(-2deg); }

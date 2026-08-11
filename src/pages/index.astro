@@ -92,15 +92,15 @@ import Layout from '../layouts/Layout.astro';
 
   <section id="comms" class="wrap">
     <div class="section-head"><span class="num">04</span><h2>Comms</h2></div>
-    <div class="comms-head">
+    <div class="comms-row">
       <img class="widget w-callsign" src="/images/widgets/callsign.webp" alt="Callsign: Stalker. Reconnaissance is an art, not a job." width="223" height="120" />
+      <div class="comms-grid">
+        <!-- TODO: real profile URLs + handles -->
+        <a class="plate comm" href="#"><span class="svc">Steam</span><span class="handle">Callsign pending</span></a>
+        <a class="plate comm" href="#"><span class="svc">PlayStation</span><span class="handle">Callsign pending</span></a>
+        <a class="plate comm" href="#"><span class="svc">Discord</span><span class="handle">Callsign pending</span></a>
+      </div>
       <img class="widget w-freq" src="/images/widgets/freq-plate-v2.webp" alt="" aria-hidden="true" width="174" height="104" />
-    </div>
-    <div class="comms-grid">
-      <!-- TODO: real profile URLs + handles -->
-      <a class="plate comm" href="#"><span class="svc">Steam</span><span class="handle">Callsign pending</span></a>
-      <a class="plate comm" href="#"><span class="svc">PlayStation</span><span class="handle">Callsign pending</span></a>
-      <a class="plate comm" href="#"><span class="svc">Discord</span><span class="handle">Callsign pending</span></a>
     </div>
   </section>
 </main>
