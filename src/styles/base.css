@@ -243,8 +243,11 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 .lkp-break { display: flex; justify-content: center; padding-block: 0 1rem; }
 .lkp-standalone { width: min(330px, 78%); opacity: .7; }
 
-/* section divider between gallery and comms */
-.tooclose-break { display: flex; justify-content: center; padding-block: clamp(1rem, 3vw, 2rem); }
+/* section divider between gallery and comms — the neighbouring sections
+   already supply their own padding, so pull it in tight on both sides */
+#gallery { padding-bottom: clamp(1rem, 2vw, 1.5rem); }
+#comms { padding-top: clamp(1rem, 2vw, 1.5rem); }
+.tooclose-break { display: flex; justify-content: center; padding-block: 0; }
 .tooclose-standalone { width: min(200px, 55%); opacity: .8; transform: rotate(-1.5deg); }
 
 .w-wheel { top: 4.5rem; right: 1rem; width: 180px; opacity: .55; transform: rotate(-2deg); }
