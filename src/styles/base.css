@@ -242,10 +242,12 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 .lkp-standalone { width: min(330px, 78%); opacity: .7; }
 
 .w-wheel { top: 4.5rem; right: 1rem; width: 180px; opacity: .55; transform: rotate(-2deg); }
-/* the stamp row closes out the loadout section, so trim the section's own
-   tail — otherwise its bottom pad plus the gallery's top pad reads as a void */
-#loadout { padding-bottom: clamp(1rem, 2vw, 1.75rem); }
-.stamp-row { display: flex; justify-content: center; align-items: center; gap: clamp(1.5rem, 5vw, 3.5rem); margin-top: 2.5rem; flex-wrap: wrap; }
+/* the stamp row closes out the loadout section: give it room to breathe under
+   the cards, then trim the section tail and the gallery's lead-in so the
+   space above and below the stamps stays even (~72px each at desktop) */
+#loadout { padding-bottom: clamp(.5rem, 1.5vw, 1rem); }
+#gallery { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
+.stamp-row { display: flex; justify-content: center; align-items: center; gap: clamp(1.5rem, 5vw, 3.5rem); margin-top: clamp(3rem, 6vw, 4.5rem); flex-wrap: wrap; }
 .stamp-row img { height: 84px; width: auto; opacity: .7; }
 .stamp-row .obj { height: clamp(230px, 32vw, 290px); opacity: .9; }
 .stamp-row .beaver-badge { height: clamp(153px, 21.3vw, 193px); opacity: .9; }
