@@ -265,8 +265,11 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 .slot .squatch { width: 150px; opacity: .55; }
 .slot .seen { width: 110px; opacity: .65; transform: rotate(-2deg); }
 
-.w-freq { top: 4rem; right: 1rem; width: 160px; opacity: .55; transform: rotate(2deg); }
-.w-callsign { width: 210px; opacity: .75; margin-bottom: 1.75rem; }
+/* callsign and frequency sit as a flow row, not absolutes — the section's
+   padding changes shouldn't be able to knock them out of position */
+.comms-head { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.w-freq { width: 160px; opacity: .6; transform: rotate(2deg); }
+.w-callsign { width: 210px; opacity: .75; }
 
 .w-404 { width: 84px; opacity: .7; margin-inline: auto; margin-bottom: 1rem; }
 .w-tooclose { width: 160px; opacity: .65; margin-inline: auto; margin-top: 2rem; transform: rotate(-2deg); }
