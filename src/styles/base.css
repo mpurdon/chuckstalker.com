@@ -241,8 +241,8 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 .w-wheel { top: 4.5rem; right: 1rem; width: 180px; opacity: .55; transform: rotate(-2deg); }
 .stamp-row { display: flex; justify-content: center; align-items: center; gap: clamp(1.5rem, 5vw, 3.5rem); margin-top: 2.5rem; flex-wrap: wrap; }
 .stamp-row img { height: 84px; width: auto; opacity: .7; }
-.stamp-row .obj,
-.stamp-row .beaver-badge { height: clamp(230px, 32vw, 290px); opacity: .9; }
+.stamp-row .obj { height: clamp(230px, 32vw, 290px); opacity: .9; }
+.stamp-row .beaver-badge { height: clamp(153px, 21.3vw, 193px); opacity: .9; }
 
 .w-stayhidden { top: 4.2rem; right: 1rem; width: 200px; opacity: .5; transform: rotate(-1deg); }
 .slot .squatch { width: 150px; opacity: .55; }
