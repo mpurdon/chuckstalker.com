@@ -1,0 +1,67 @@
+/* Two-layer token system: raw palette -> semantic aliases.
+   Background variants are keyed by data-bg on <html>; the inline head script
+   picks one at random before first paint. Defaults = "black" so a no-JS
+   visitor still gets a correct page. */
+
+:root {
+  /* raw palette (derived from the Chuck Stalker logo) */
+  --iron-950: #100f0d;
+  --iron-900: #191714;
+  --iron-800: #23201c;
+  --iron-700: #2e2a25;
+  --bone-100: #ede6da;
+  --bone-300: #c9bfae;
+  --bone-500: #948b7a;
+  --orange-400: #f57f33;
+  --orange-500: #e8631c;
+  --orange-600: #c04e12;
+  --rust-500: #8a3b1e;
+  --rust-700: #5c2712;
+  --rust-900: #3a1a0e;
+  --olive-500: #5a5b3a;
+  --olive-700: #3c3d28;
+  --olive-900: #24251a;
+  --gunmetal-700: #2a323a;
+  --gunmetal-900: #181f26;
+
+  /* semantic (defaults = "black" variant) */
+  --bg-base: var(--iron-900);
+  --bg-deep: var(--iron-950);
+  --bg-image: url('/images/bg/bg-black.webp');
+  --bg-surface: rgba(16, 15, 13, .74);
+  --text-primary: var(--bone-100);
+  --text-secondary: var(--bone-300);
+  --text-muted: var(--bone-500);
+  --accent: var(--orange-400);
+  --accent-strong: var(--orange-500);
+  --accent-deep: var(--orange-600);
+  --border: rgba(237, 230, 218, .16);
+  --border-strong: rgba(237, 230, 218, .28);
+  --focus-ring: var(--orange-400);
+
+  --font-display: 'Big Shoulders', system-ui, sans-serif;
+  --font-stencil: 'Allerta Stencil', system-ui, sans-serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
+
+  --tracking-wide: .14em;
+  --tracking-wider: .24em;
+  --maxw: 72rem;
+}
+
+html[data-bg="olive"] {
+  --bg-base: var(--olive-700);
+  --bg-deep: var(--olive-900);
+  --bg-image: url('/images/bg/bg-olive.webp');
+}
+
+html[data-bg="rust"] {
+  --bg-base: var(--rust-700);
+  --bg-deep: var(--rust-900);
+  --bg-image: url('/images/bg/bg-rust.webp');
+}
+
+html[data-bg="gunmetal"] {
+  --bg-base: var(--gunmetal-700);
+  --bg-deep: var(--gunmetal-900);
+  --bg-image: url('/images/bg/bg-gunmetal.webp');
+}

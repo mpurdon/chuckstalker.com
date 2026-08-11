@@ -1,0 +1,168 @@
+---
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Chuck Stalker',
+  description = 'Chuck Stalker — gaming persona. Precision, observation, execution. Extraction shooters, tactical FPS, and the occasional cooked grenade.',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/images/og-card.jpg', Astro.site).href;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Chuck Stalker',
+  url: Astro.site?.href,
+  image: ogImage,
+  description: 'Gaming persona. Precision, observation, execution.',
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Chuck Stalker',
+  url: Astro.site?.href,
+};
+---
+
+<!doctype html>
+<html lang="en" data-bg="black">
+<head>
+  <meta charset="utf-8" />
+  <!-- Random backdrop, chosen before first paint so there is no flash.
+       ?bg=black|olive|rust|gunmetal overrides for testing. -->
+  <script is:inline>
+    (function () {
+      var v = ['black', 'olive', 'rust', 'gunmetal'];
+      var q = new URLSearchParams(location.search).get('bg');
+      document.documentElement.dataset.bg =
+        v.indexOf(q) > -1 ? q : v[(Math.random() * v.length) | 0];
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#191714" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="chuckstalker.com" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preload" href="/fonts/allerta-stencil-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
+
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="nav-left">
+      <a class="mark-link" href="#" aria-label="Back to top">
+        <img class="mark" src="/images/logo-mark.webp" alt="" width="256" height="256" />
+      </a>
+      <nav aria-label="Site">
+        <a href="/#dossier">Dossier</a>
+        <a href="/#loadout">Loadout</a>
+      </nav>
+    </div>
+    <a class="banner-link" href="#">
+      <img class="banner" src="/images/wordmark-banner.webp" alt="Chuck Stalker — back to top" width="1200" height="186" />
+    </a>
+    <div class="nav-right">
+      <nav aria-label="Site secondary">
+        <a href="/#gallery">Gallery</a>
+        <a href="/#comms">Comms</a>
+      </nav>
+      <div class="theme-menu">
+        <button class="hamburger" type="button" aria-expanded="false" aria-controls="theme-panel" aria-label="Backdrop menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="theme-panel plate" id="theme-panel" hidden>
+          <span class="label">Backdrop</span>
+          <button type="button" data-bg="black">Industrial Black</button>
+          <button type="button" data-bg="olive">Military Steel</button>
+          <button type="button" data-bg="rust">Scorched Rust</button>
+          <button type="button" data-bg="gunmetal">Gunmetal Blue</button>
+          <button type="button" data-bg="random">Random Reroll</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<slot />
+
+<div class="hazard" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <span class="line"><b>Chuck Stalker</b> &nbsp;//&nbsp; Est. in the Bad Ideas Department</span>
+    <span class="line">&copy; 2026 &nbsp;&middot;&nbsp; All transmissions monitored</span>
+    <a class="badge-frosty" href="#">&#9760; Stay Frosty</a>
+  </div>
+</footer>
+
+<script is:inline>
+  (function () {
+    var variants = ['black', 'olive', 'rust', 'gunmetal'];
+    var root = document.documentElement;
+    var menu = document.querySelector('.theme-menu');
+    var burger = menu.querySelector('.hamburger');
+    var panel = menu.querySelector('.theme-panel');
+
+    function apply(v) {
+      root.dataset.bg = v;
+      panel.querySelectorAll('button[data-bg]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.bg === v));
+      });
+    }
+    apply(root.dataset.bg);
+
+    function close() { panel.hidden = true; burger.setAttribute('aria-expanded', 'false'); }
+    burger.addEventListener('click', function () {
+      var open = panel.hidden;
+      panel.hidden = !open;
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) { if (!menu.contains(e.target)) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    panel.querySelectorAll('button[data-bg]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.dataset.bg;
+        if (v === 'random') {
+          var others = variants.filter(function (x) { return x !== root.dataset.bg; });
+          v = others[(Math.random() * others.length) | 0];
+        }
+        apply(v);
+        close();
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

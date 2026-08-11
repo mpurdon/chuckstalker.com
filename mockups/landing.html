@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-bg="black">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chuck Stalker — mockup</title>
+<!-- MOCKUP ONLY: production self-hosts these fonts as woff2 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Allerta+Stencil&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens ============ */
+:root {
+  /* raw palette */
+  --iron-950:#100f0d; --iron-900:#191714; --iron-800:#23201c; --iron-700:#2e2a25;
+  --bone-100:#ede6da; --bone-300:#c9bfae; --bone-500:#948b7a;
+  --orange-400:#f57f33; --orange-500:#e8631c; --orange-600:#c04e12;
+  --rust-500:#8a3b1e; --rust-700:#5c2712; --rust-900:#3a1a0e;
+  --olive-500:#5a5b3a; --olive-700:#3c3d28; --olive-900:#24251a;
+  --gunmetal-700:#2a323a; --gunmetal-900:#181f26;
+
+  /* semantic (defaults = "black" variant, correct with JS off) */
+  --bg-base:var(--iron-900); --bg-deep:var(--iron-950);
+  --bg-surface:rgba(16,15,13,.74);
+  --text-primary:var(--bone-100); --text-secondary:var(--bone-300); --text-muted:var(--bone-500);
+  --accent:var(--orange-400); --accent-strong:var(--orange-500); --accent-deep:var(--orange-600);
+  --border:rgba(237,230,218,.16); --border-strong:rgba(237,230,218,.28);
+  --focus-ring:var(--orange-400);
+
+  --font-display:"Big Shoulders Display",system-ui,sans-serif;
+  --font-stencil:"Allerta Stencil",system-ui,sans-serif;
+  --font-body:"Barlow",system-ui,sans-serif;
+
+  --tracking-wide:.14em; --tracking-wider:.24em;
+  --maxw:72rem;
+}
+:root                    { --bg-image:url("../assets-src/bg/bg-black.jpg"); }
+html[data-bg="olive"]    { --bg-base:var(--olive-700);    --bg-deep:var(--olive-900);    --bg-image:url("../assets-src/bg/bg-olive.jpg"); }
+html[data-bg="rust"]     { --bg-base:var(--rust-700);     --bg-deep:var(--rust-900);     --bg-image:url("../assets-src/bg/bg-rust.jpg"); }
+html[data-bg="gunmetal"] { --bg-base:var(--gunmetal-700); --bg-deep:var(--gunmetal-900); --bg-image:url("../assets-src/bg/bg-gunmetal.jpg"); }
+
+/* ============ base ============ */
+*,*::before,*::after { box-sizing:border-box; margin:0; }
+html { scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+body {
+  font-family:var(--font-body); font-size:1.0625rem; line-height:1.6;
+  color:var(--text-primary);
+  background-color:var(--bg-deep);
+  /* steel: grain / brushed sheen / vignette / base wash */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 50% 12%, rgba(255,255,255,.03), rgba(0,0,0,.55) 82%),
+    var(--bg-image),
+    linear-gradient(178deg, var(--bg-base), var(--bg-deep) 86%);
+  background-size:240px 240px, auto, cover, auto;
+  background-position:center;
+  background-attachment:fixed;
+  min-height:100vh;
+}
+img { max-width:100%; height:auto; display:block; }
+a { color:var(--accent); }
+a:focus-visible, button:focus-visible { outline:2px solid var(--focus-ring); outline-offset:3px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.wrap { max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(1.25rem, 4vw, 2.5rem); }
+
+/* ============ shared hardware ============ */
+.stencil { font-family:var(--font-stencil); text-transform:uppercase; letter-spacing:var(--tracking-wider); }
+.plate {
+  position:relative;
+  background:linear-gradient(174deg, rgba(255,255,255,.045), rgba(0,0,0,.28)), var(--bg-surface);
+  border:1px solid var(--border);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), inset 0 0 34px rgba(0,0,0,.5), 0 10px 26px rgba(0,0,0,.38);
+  border-radius:3px;
+}
+.rivets::before, .rivets::after {
+  content:""; position:absolute; width:7px; height:7px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(120,110,95,.9) 40%, rgba(0,0,0,.9));
+  box-shadow:0 1px 2px rgba(0,0,0,.8);
+}
+.rivets::before { top:9px;   left:9px;  box-shadow:0 1px 2px rgba(0,0,0,.8), calc(100cqw - 25px) 0 0 0 rgba(0,0,0,0); }
+.rivets::after  { bottom:9px; right:9px; }
+.rivets .rivet-tr, .rivets .rivet-bl { position:absolute; width:7px; height:7px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(120,110,95,.9) 40%, rgba(0,0,0,.9));
+  box-shadow:0 1px 2px rgba(0,0,0,.8); }
+.rivets .rivet-tr { top:9px; right:9px; }
+.rivets .rivet-bl { bottom:9px; left:9px; }
+.hazard {
+  height:6px; border:0;
+  background:repeating-linear-gradient(-45deg, var(--accent-deep) 0 14px, rgba(0,0,0,.85) 14px 28px);
+  opacity:.5; border-radius:1px;
+}
+.section-head { display:flex; align-items:center; gap:1rem; margin-bottom:1.75rem; }
+.section-head h2 { font-family:var(--font-stencil); font-weight:400; font-size:clamp(1.25rem,2.6vw,1.6rem); letter-spacing:var(--tracking-wider); color:var(--text-primary); white-space:nowrap; }
+.section-head .num { color:var(--accent); font-family:var(--font-stencil); font-size:.8rem; letter-spacing:var(--tracking-wide); }
+.section-head::after { content:""; flex:1; height:1px; background:linear-gradient(90deg, var(--border-strong), transparent); }
+section { padding-block:clamp(3.5rem, 8vw, 6rem); }
+
+/* ============ masthead ============ */
+.masthead {
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(rgba(10,9,8,.92), rgba(10,9,8,.78));
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--border);
+}
+.masthead .wrap { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1.25rem; min-height:5.5rem; padding-block:.6rem; }
+.masthead .banner-link { justify-self:center; display:flex; }
+.masthead .banner { height:68px; width:auto; filter:drop-shadow(0 5px 10px rgba(0,0,0,.55)); }
+.masthead nav { display:flex; gap:clamp(.75rem,2.2vw,1.6rem); flex-wrap:wrap; }
+.masthead .nav-left { justify-self:start; display:flex; align-items:center; gap:clamp(.75rem,2.2vw,1.6rem); }
+.masthead .mark-link { display:flex; }
+.masthead .mark { height:68px; width:68px; filter:drop-shadow(0 4px 8px rgba(0,0,0,.5)); }
+.masthead .nav-right { justify-self:end; align-items:center; display:flex; gap:clamp(.75rem,2.2vw,1.6rem); }
+.masthead nav a {
+  font-family:var(--font-stencil); font-size:.72rem; letter-spacing:var(--tracking-wide);
+  text-transform:uppercase; text-decoration:none; color:var(--text-secondary); padding:.35rem 0;
+  border-bottom:2px solid transparent;
+}
+.masthead nav a:hover { color:var(--accent); border-bottom-color:var(--accent-deep); }
+.badge-frosty {
+  font-family:var(--font-stencil); font-size:.68rem; letter-spacing:var(--tracking-wide); text-transform:uppercase;
+  color:var(--accent); text-decoration:none; padding:.45rem .9rem;
+  border:1px solid var(--accent-deep); border-radius:3px;
+  background:linear-gradient(rgba(232,99,28,.14), rgba(0,0,0,.3));
+  box-shadow:inset 0 0 12px rgba(0,0,0,.5);
+  white-space:nowrap;
+}
+.badge-frosty:hover { background:linear-gradient(rgba(232,99,28,.26), rgba(0,0,0,.3)); }
+
+/* ============ hero ============ */
+.hero { min-height:calc(100vh - 4.25rem - 1rem); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-block:clamp(1.5rem,4vh,2.5rem) 3.5rem; position:relative; }
+.eyebrow { display:flex; gap:.9rem; align-items:center; justify-content:center; flex-wrap:wrap; font-family:var(--font-stencil); font-size:clamp(.68rem,1.4vw,.82rem); letter-spacing:var(--tracking-wider); text-transform:uppercase; color:var(--text-secondary); margin-bottom:1.25rem; }
+.eyebrow .dot { width:5px; height:5px; background:var(--accent-strong); border-radius:50%; }
+.hero .lockup { width:auto; max-height:min(58vh, 34rem); max-width:88vw; filter:drop-shadow(0 20px 34px rgba(0,0,0,.6)); }
+.hero .lede { margin-top:1rem; max-width:36rem; margin-inline:auto; color:var(--text-secondary); font-size:1.05rem; }
+.cta {
+  display:inline-flex; align-items:center; gap:.8rem; margin-top:2rem;
+  font-family:var(--font-stencil); font-size:.8rem; letter-spacing:var(--tracking-wider); text-transform:uppercase;
+  color:var(--accent); text-decoration:none; padding:.95rem 1.6rem;
+  border:1px solid var(--accent-deep); border-radius:3px;
+  background:linear-gradient(174deg, rgba(255,255,255,.05), rgba(0,0,0,.4)), rgba(10,9,8,.6);
+  box-shadow:inset 0 0 18px rgba(0,0,0,.55), 0 8px 18px rgba(0,0,0,.35);
+}
+.cta .arrow { transition:transform .18s ease; }
+.cta:hover { color:var(--bone-100); border-color:var(--accent); background:linear-gradient(174deg, rgba(232,99,28,.22), rgba(0,0,0,.4)), rgba(10,9,8,.6); }
+.cta:hover .arrow { transform:translateX(4px); }
+@media (prefers-reduced-motion:reduce) { .cta .arrow { transition:none; } .cta:hover .arrow { transform:none; } }
+/* ============ dossier ============ */
+.dossier-card { padding:clamp(1.5rem,4vw,2.5rem); }
+.dossier-card p { max-width:62ch; }
+.dossier-card p + p { margin-top:1rem; }
+.dossier-card .callsign { color:var(--accent); font-weight:500; }
+.stamp {
+  position:absolute; top:-0.85rem; right:1.2rem; transform:rotate(-2.5deg);
+  font-family:var(--font-stencil); font-size:.62rem; letter-spacing:var(--tracking-wide); text-transform:uppercase;
+  color:var(--accent); border:1.5px dashed var(--accent-deep); border-radius:2px;
+  padding:.3rem .6rem; background:rgba(10,9,8,.85); opacity:.85;
+}
+
+/* ============ loadout ============ */
+.loadout-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1.25rem; }
+.loadout-card { padding:1.4rem 1.5rem 1.5rem; }
+.loadout-card h3 { font-family:var(--font-display); font-weight:800; font-size:1.35rem; letter-spacing:.04em; text-transform:uppercase; color:var(--text-primary); }
+.loadout-card p { margin-top:.5rem; font-size:.95rem; color:var(--text-secondary); }
+.pills { display:flex; gap:.5rem; margin-top:1rem; flex-wrap:wrap; }
+.pill { font-family:var(--font-stencil); font-size:.58rem; letter-spacing:var(--tracking-wide); text-transform:uppercase; color:var(--text-muted); border:1px solid var(--border-strong); border-radius:2px; padding:.22rem .55rem; }
+
+/* ============ gallery ============ */
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:1.25rem; }
+.slot { aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.5rem; overflow:hidden; }
+.slot .ghost { width:52px; opacity:.16; filter:grayscale(.4); }
+.slot .label { font-family:var(--font-stencil); font-size:.6rem; letter-spacing:var(--tracking-wider); text-transform:uppercase; color:var(--text-muted); }
+
+/* ============ comms ============ */
+.comms-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr)); gap:1.25rem; max-width:52rem; }
+.comm { display:block; text-decoration:none; padding:1.5rem 1.6rem; }
+.comm .svc { font-family:var(--font-stencil); font-size:.95rem; letter-spacing:var(--tracking-wider); text-transform:uppercase; color:var(--text-primary); }
+.comm .handle { display:block; margin-top:.45rem; font-size:.88rem; color:var(--text-muted); }
+.comm:hover { border-color:var(--accent-deep); }
+.comm:hover .svc { color:var(--accent); }
+
+/* ============ footer ============ */
+footer { border-top:1px solid var(--border); background:rgba(10,9,8,.75); }
+footer .wrap { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; padding-block:.9rem; }
+footer .line { font-family:var(--font-stencil); font-size:.62rem; letter-spacing:var(--tracking-wide); text-transform:uppercase; color:var(--text-muted); }
+footer .line b { color:var(--text-secondary); font-weight:400; }
+
+/* ============ responsive ============ */
+@media (max-width: 860px) {
+  .masthead .wrap { grid-template-columns:1fr 1fr; grid-template-areas:"banner banner" "left right"; row-gap:.4rem; }
+  .masthead .banner-link { grid-area:banner; }
+  .masthead .banner { height:36px; }
+  .masthead .mark { height:36px; width:36px; }
+  .masthead .nav-left { grid-area:left; }
+  .masthead .nav-right { grid-area:right; }
+  .hero { min-height:0; }
+  .hero .lockup { max-height:52vh; }
+}
+
+/* ============ greebles (stamped hull markings, extracted from photos) ============ */
+.greeble { position:absolute; pointer-events:none; user-select:none; color:var(--bone-100); }
+.g-leaf { top:3.5rem; left:3%; width:min(20vw, 320px); opacity:.5; transform:rotate(-2deg); }
+.g-skull { top:4rem; right:3.5%; width:min(11vw, 170px); opacity:.55; transform:rotate(2deg); }
+.g-chevrons { bottom:18%; left:5%; opacity:.16; transform:rotate(-2deg); }
+@media (max-width: 980px) { .greeble { display:none; } }
+
+/* ============ backdrop menu (hamburger, top right) ============ */
+.theme-menu { position:relative; }
+.hamburger { display:flex; flex-direction:column; justify-content:center; gap:5px; width:42px; height:42px; align-items:center; border:1px solid var(--border-strong); border-radius:3px; background:rgba(10,9,8,.6); cursor:pointer; }
+.hamburger span { width:20px; height:2px; background:var(--text-secondary); }
+.hamburger:hover span, .hamburger[aria-expanded="true"] span { background:var(--accent); }
+.theme-panel { position:absolute; right:0; top:calc(100% + .6rem); min-width:13.5rem; padding:.7rem; display:flex; flex-direction:column; gap:.3rem; z-index:60; }
+.theme-panel[hidden] { display:none; }
+.theme-panel .label { font-family:var(--font-stencil); font-size:.58rem; letter-spacing:var(--tracking-wider); text-transform:uppercase; color:var(--text-muted); padding:.2rem .5rem .5rem; }
+.theme-panel button { font-family:var(--font-stencil); font-size:.68rem; letter-spacing:var(--tracking-wide); text-transform:uppercase; text-align:left; color:var(--text-secondary); background:none; border:1px solid transparent; border-radius:2px; padding:.5rem .7rem; cursor:pointer; }
+.theme-panel button:hover { color:var(--accent); border-color:var(--accent-deep); }
+.theme-panel button[aria-pressed="true"] { color:var(--accent); border-color:var(--accent-deep); background:rgba(232,99,28,.12); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="nav-left">
+      <a class="mark-link" href="#" aria-label="Back to top"><img class="mark" src="../assets-src/logo-mark-circle.png" alt="" width="1254" height="1254"></a>
+      <nav aria-label="Site">
+        <a href="#dossier">Dossier</a>
+        <a href="#loadout">Loadout</a>
+      </nav>
+    </div>
+    <a class="banner-link" href="#"><img class="banner" src="../assets-src/wordmark-banner-keyed-cropped.png" alt="Chuck Stalker — back to top" width="1847" height="286"></a>
+    <div class="nav-right">
+      <nav aria-label="Site secondary">
+        <a href="#gallery">Gallery</a>
+        <a href="#comms">Comms</a>
+      </nav>
+      <div class="theme-menu">
+        <button class="hamburger" type="button" aria-expanded="false" aria-controls="theme-panel" aria-label="Backdrop menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="theme-panel plate" id="theme-panel" hidden>
+          <span class="label">Backdrop</span>
+          <button type="button" data-bg="black">Industrial Black</button>
+          <button type="button" data-bg="olive">Military Steel</button>
+          <button type="button" data-bg="rust">Scorched Rust</button>
+          <button type="button" data-bg="gunmetal">Gunmetal Blue</button>
+          <button type="button" data-bg="random">Random Reroll</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <h1 class="sr-only">Chuck Stalker — gaming persona</h1>
+
+  <div class="wrap hero">
+    <img class="greeble g-leaf" src="../assets-src/greeble-leaf.png" alt="" aria-hidden="true">
+    <img class="greeble g-skull" src="../assets-src/greeble-skull.png" alt="" aria-hidden="true">
+    <svg class="greeble g-chevrons" width="64" height="46" viewBox="0 0 64 46" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true">
+      <path d="M4 20 L32 4 L60 20 M4 32 L32 16 L60 32 M4 44 L32 28 L60 44"/>
+    </svg>
+    <p class="eyebrow"><span>Precision</span><span class="dot"></span><span>Observation</span><span class="dot"></span><span>Execution</span></p>
+    <img class="lockup" src="../assets-src/logo-full-original.png" alt="Chuck Stalker" width="1254" height="1254">
+    <p class="lede">Call sign Chuck Stalker. Holds the angle, checks the corner twice, and still manages to cook his own grenade about once a session.</p>
+    <a class="cta" href="#dossier"><span>&#9760;</span> Enter the zone <span class="arrow">&#8594;</span></a>
+  </div>
+
+  <section id="dossier" class="wrap">
+    <div class="section-head"><span class="num">01</span><h2>The Dossier</h2></div>
+    <div class="plate rivets dossier-card">
+      <span class="rivet-tr"></span><span class="rivet-bl"></span>
+      <span class="stamp">Placeholder copy — replace</span>
+      <p><span class="callsign">SUBJECT:</span> Chuck Stalker. Last confirmed sighting: mid-lobby, arguing with the shop rotation. Known for patient scouting, generous ping discipline, and a pathological need to loot one more building.</p>
+      <p>Operates on a strict doctrine: precision when it counts, observation when it doesn't, execution somewhere in between. Squad-approved. Enemy-tolerated.</p>
+      <p>This dossier is intentionally thin. The full file gets declassified when there's something worth declassifying.</p>
+    </div>
+  </section>
+
+  <section id="loadout" class="wrap">
+    <div class="section-head"><span class="num">02</span><h2>Loadout</h2></div>
+    <div class="loadout-grid">
+      <div class="plate loadout-card">
+        <h3>Extraction Shooters</h3>
+        <p>Get in, get greedy, get punished. Repeat until the stash is full.</p>
+        <div class="pills"><span class="pill">PC</span><span class="pill">PS5</span></div>
+      </div>
+      <div class="plate loadout-card">
+        <h3>Tactical FPS</h3>
+        <p>Slow is smooth, smooth is fast, and Chuck is mostly slow.</p>
+        <div class="pills"><span class="pill">PC</span></div>
+      </div>
+      <div class="plate loadout-card">
+        <h3>Souls-likes</h3>
+        <p>Dies to the same boss forty times, calls it "learning the moveset."</p>
+        <div class="pills"><span class="pill">PS5</span></div>
+      </div>
+      <div class="plate loadout-card">
+        <h3>Co-op Chaos</h3>
+        <p>Any game where friendly fire is a setting and a lifestyle.</p>
+        <div class="pills"><span class="pill">PC</span><span class="pill">PS5</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="wrap">
+    <div class="section-head"><span class="num">03</span><h2>Gallery</h2></div>
+    <div class="gallery-grid">
+      <!-- swap each slot for a real screenshot: <img src="/images/gallery/xx.webp" alt="..."> -->
+      <div class="plate slot"><img class="ghost" src="../assets-src/logo-mark-faded.png" alt=""><span class="label">Awaiting footage // Slot 01</span></div>
+      <div class="plate slot"><img class="ghost" src="../assets-src/logo-mark-faded.png" alt=""><span class="label">Awaiting footage // Slot 02</span></div>
+      <div class="plate slot"><img class="ghost" src="../assets-src/logo-mark-faded.png" alt=""><span class="label">Awaiting footage // Slot 03</span></div>
+      <div class="plate slot"><img class="ghost" src="../assets-src/logo-mark-faded.png" alt=""><span class="label">Awaiting footage // Slot 04</span></div>
+      <div class="plate slot"><img class="ghost" src="../assets-src/logo-mark-faded.png" alt=""><span class="label">Awaiting footage // Slot 05</span></div>
+      <div class="plate slot"><img class="ghost" src="../assets-src/logo-mark-faded.png" alt=""><span class="label">Awaiting footage // Slot 06</span></div>
+    </div>
+  </section>
+
+  <section id="comms" class="wrap">
+    <div class="section-head"><span class="num">04</span><h2>Comms</h2></div>
+    <div class="comms-grid">
+      <!-- TODO: real profile URLs + handles -->
+      <a class="plate comm" href="#"><span class="svc">Steam</span><span class="handle">Callsign pending</span></a>
+      <a class="plate comm" href="#"><span class="svc">PlayStation</span><span class="handle">Callsign pending</span></a>
+      <a class="plate comm" href="#"><span class="svc">Discord</span><span class="handle">Callsign pending</span></a>
+    </div>
+  </section>
+</main>
+
+<div class="hazard" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <span class="line"><b>Chuck Stalker</b> &nbsp;//&nbsp; Est. in the Bad Ideas Department</span>
+    <span class="line">&copy; 2026 &nbsp;&middot;&nbsp; All transmissions monitored</span>
+    <a class="badge-frosty" href="#">&#9760; Stay Frosty</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var variants = ["black", "olive", "rust", "gunmetal"];
+  var root = document.documentElement;
+  var menu = document.querySelector(".theme-menu");
+  var burger = menu.querySelector(".hamburger");
+  var panel = menu.querySelector(".theme-panel");
+
+  function apply(v) {
+    root.dataset.bg = v;
+    panel.querySelectorAll("button[data-bg]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.bg === v));
+    });
+  }
+  // initial: ?bg= override, else random (mirrors the production picker)
+  var q = new URLSearchParams(location.search).get("bg");
+  apply(variants.indexOf(q) > -1 ? q : variants[(Math.random() * variants.length) | 0]);
+
+  function close() { panel.hidden = true; burger.setAttribute("aria-expanded", "false"); }
+  burger.addEventListener("click", function () {
+    var open = panel.hidden;
+    panel.hidden = !open;
+    burger.setAttribute("aria-expanded", String(open));
+  });
+  document.addEventListener("click", function (e) { if (!menu.contains(e.target)) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  panel.querySelectorAll("button[data-bg]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.dataset.bg;
+      if (v === "random") {
+        var others = variants.filter(function (x) { return x !== root.dataset.bg; });
+        v = others[(Math.random() * others.length) | 0];
+      }
+      apply(v);
+      close();
+    });
+  });
+})();
+</script>
+</body>
+</html>
