@@ -9,71 +9,82 @@ import Layout from '../layouts/Layout.astro';
   <div class="wrap hero">
     <img class="greeble g-leaf" src="/images/greeble-leaf.webp" alt="" aria-hidden="true" width="384" height="152" />
     <img class="greeble g-skull" src="/images/greeble-skull.webp" alt="" aria-hidden="true" width="206" height="390" />
-    <svg class="greeble g-chevrons" width="64" height="46" viewBox="0 0 64 46" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true">
-      <path d="M4 20 L32 4 L60 20 M4 32 L32 16 L60 32 M4 44 L32 28 L60 44" />
-    </svg>
+    <img class="greeble g-crown" src="/images/widgets/crown-skull.webp" alt="" aria-hidden="true" width="130" height="140" />
     <p class="eyebrow"><span>Precision</span><span class="dot"></span><span>Observation</span><span class="dot"></span><span>Execution</span></p>
     <picture>
       <source srcset="/images/logo-full.webp" type="image/webp" />
       <img class="lockup" src="/images/logo-full.png" alt="Chuck Stalker" width="1254" height="1254" />
     </picture>
-    <p class="lede">Call sign Chuck Stalker. Holds the angle, checks the corner twice, and still manages to cook his own grenade about once a session.</p>
+    <p class="lede">Playing since Atari. Battlefield since 1942. Don't quote the dark magic to me, boy &mdash; I was there when it was written.</p>
     <a class="cta" href="#dossier"><span>&#9760;</span> Enter the zone <span class="arrow">&#8594;</span></a>
+    <img class="widget w-abs w-shorsey" src="/images/widgets/shorsey.webp" alt="" aria-hidden="true" width="142" height="106" />
   </div>
 
   <section id="dossier" class="wrap">
     <div class="section-head"><span class="num">01</span><h2>The Dossier</h2></div>
     <div class="plate rivets dossier-card">
       <span class="rivet-tr"></span><span class="rivet-bl"></span>
-      <span class="stamp">Placeholder copy — replace</span>
-      <p><span class="callsign">SUBJECT:</span> Chuck Stalker. Last confirmed sighting: mid-lobby, arguing with the shop rotation. Known for patient scouting, generous ping discipline, and a pathological need to loot one more building.</p>
-      <p>Operates on a strict doctrine: precision when it counts, observation when it doesn't, execution somewhere in between. Squad-approved. Enemy-tolerated.</p>
-      <p>This dossier is intentionally thin. The full file gets declassified when there's something worth declassifying.</p>
+      <span class="stamp">Declassified // Veteran file</span>
+      <img class="widget ribbons-img" src="/images/widgets/ribbons.webp" alt="Campaign service ribbons" width="393" height="59" />
+      <img class="widget w-abs w-compass" src="/images/widgets/compass.webp" alt="" aria-hidden="true" width="135" height="162" />
+      <img class="widget w-abs w-lkp" src="/images/widgets/lkp-plate.webp" alt="Last known position: Dundas St. E and Brock St. N, downtown Whitby, ON" width="343" height="246" />
+      <p><span class="callsign">SUBJECT:</span> Chuck Stalker. In continuous service since the Atari era. Enlisted in Battlefield 1942 on day one and has deployed to every theater since &mdash; wake islands, metro chokepoints, whatever the frontline is this decade.</p>
+      <p class="pullquote"><img class="pq-icon" src="/images/widgets/skull-stamp.webp" alt="" aria-hidden="true" width="114" height="136" /> Dip, dip, potato chip</p>
+      <p>Current postings: commanding armor in World of Tanks (angling plates, respecting gun depression, blaming RNGesus through proper channels), holding objectives in Battlefield, and keeping a fully-insured fleet ready for the day Star Citizen releases. The faith is unshakeable. The refund window is long closed.</p>
+      <p>Standing advice to new recruits: Alt+F4 opens the secret loot menu. Standing advice to lobby lawyers: don't quote the dark magic to me, boy. I was there when it was written.</p>
     </div>
   </section>
 
   <section id="loadout" class="wrap">
     <div class="section-head"><span class="num">02</span><h2>Loadout</h2></div>
+    <img class="widget w-abs w-wheel" src="/images/widgets/wheel-snipe.webp" alt="" aria-hidden="true" width="228" height="107" />
     <div class="loadout-grid">
       <div class="plate loadout-card">
-        <h3>Extraction Shooters</h3>
-        <p>Get in, get greedy, get punished. Repeat until the stash is full.</p>
-        <div class="pills"><span class="pill">PC</span><span class="pill">PS5</span></div>
-      </div>
-      <div class="plate loadout-card">
-        <h3>Tactical FPS</h3>
-        <p>Slow is smooth, smooth is fast, and Chuck is mostly slow.</p>
+        <h3>World of Tanks</h3>
+        <p>Armor angled, hull down, gun depression respected. Prayers to RNGesus filed through proper channels.</p>
         <div class="pills"><span class="pill">PC</span></div>
       </div>
       <div class="plate loadout-card">
-        <h3>Souls-likes</h3>
-        <p>Dies to the same boss forty times, calls it "learning the moveset."</p>
-        <div class="pills"><span class="pill">PS5</span></div>
-      </div>
-      <div class="plate loadout-card">
-        <h3>Co-op Chaos</h3>
-        <p>Any game where friendly fire is a setting and a lifestyle.</p>
+        <h3>Battlefield</h3>
+        <p>Enlisted in 1942. Never discharged. Still runs toward the objective while everyone else snipes from spawn.</p>
         <div class="pills"><span class="pill">PC</span><span class="pill">PS5</span></div>
       </div>
+      <div class="plate loadout-card">
+        <h3>Star Citizen</h3>
+        <p>Fleet assembled, insured, and hangar-ready. Release date: soon&trade;. The believers endure.</p>
+        <div class="pills"><span class="pill">PC</span></div>
+      </div>
+      <div class="plate loadout-card">
+        <h3>First-Person Shooters</h3>
+        <p>If it has iron sights and a killcam, Chuck has hours in it and opinions about it.</p>
+        <div class="pills"><span class="pill">PC</span><span class="pill">PS5</span></div>
+      </div>
+    </div>
+    <div class="stamp-row" aria-hidden="true">
+      <img class="widget" src="/images/widgets/mission-count.webp" alt="" width="175" height="96" />
+      <img class="widget" src="/images/widgets/beaver.webp" alt="" width="112" height="120" />
     </div>
   </section>
 
   <section id="gallery" class="wrap">
     <div class="section-head"><span class="num">03</span><h2>Gallery</h2></div>
+    <img class="widget w-abs w-stayhidden" src="/images/widgets/stay-hidden.webp" alt="" aria-hidden="true" width="220" height="67" />
     <div class="gallery-grid">
       <!-- Swap each slot for a real screenshot:
            <img src="/images/gallery/<name>.webp" alt="..." loading="lazy"> -->
       <div class="plate slot"><img class="ghost" src="/images/logo-mark.webp" alt="" /><span class="label">Awaiting footage // Slot 01</span></div>
       <div class="plate slot"><img class="ghost" src="/images/logo-mark.webp" alt="" /><span class="label">Awaiting footage // Slot 02</span></div>
-      <div class="plate slot"><img class="ghost" src="/images/logo-mark.webp" alt="" /><span class="label">Awaiting footage // Slot 03</span></div>
+      <div class="plate slot"><img class="widget squatch" src="/images/widgets/samsquanch.webp" alt="" /><span class="label">Footage inconclusive // Samsquanch</span></div>
       <div class="plate slot"><img class="ghost" src="/images/logo-mark.webp" alt="" /><span class="label">Awaiting footage // Slot 04</span></div>
-      <div class="plate slot"><img class="ghost" src="/images/logo-mark.webp" alt="" /><span class="label">Awaiting footage // Slot 05</span></div>
+      <div class="plate slot"><img class="widget seen" src="/images/widgets/you-were-seen.webp" alt="" /><span class="label">Evidence pending // Slot 05</span></div>
       <div class="plate slot"><img class="ghost" src="/images/logo-mark.webp" alt="" /><span class="label">Awaiting footage // Slot 06</span></div>
     </div>
   </section>
 
   <section id="comms" class="wrap">
     <div class="section-head"><span class="num">04</span><h2>Comms</h2></div>
+    <img class="widget w-abs w-freq" src="/images/widgets/freq-plate.webp" alt="" aria-hidden="true" width="174" height="104" />
+    <img class="widget w-callsign" src="/images/widgets/callsign.webp" alt="Callsign: Stalker. Reconnaissance is an art, not a job." width="223" height="120" />
     <div class="comms-grid">
       <!-- TODO: real profile URLs + handles -->
       <a class="plate comm" href="#"><span class="svc">Steam</span><span class="handle">Callsign pending</span></a>

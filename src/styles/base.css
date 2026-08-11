@@ -65,7 +65,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--focus-ring); ou
 .section-head .num { color: var(--accent); font-family: var(--font-stencil); font-size: .8rem; letter-spacing: var(--tracking-wide); }
 .section-head::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-strong), transparent); }
 
-section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+section { padding-block: clamp(3.5rem, 8vw, 6rem); position: relative; }
 
 /* ============ masthead ============ */
 .masthead {
@@ -159,6 +159,23 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
 .dossier-card p + p { margin-top: 1rem; }
 .dossier-card .callsign { color: var(--accent); font-weight: 500; }
 
+.pullquote {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  margin-block: 1.6rem .6rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--accent);
+}
+.pullquote .pq-icon { height: 68px; width: auto; opacity: .85; transform: rotate(-4deg); }
+.pullquote::after { content: "//"; font-family: var(--font-stencil); font-size: .6em; color: var(--text-muted); }
+
 .stamp {
   position: absolute;
   top: -0.85rem;
@@ -208,8 +225,34 @@ footer .line b { color: var(--text-secondary); font-weight: 400; }
 .greeble { position: absolute; pointer-events: none; user-select: none; color: var(--bone-100); }
 .g-leaf { top: 3.5rem; left: 3%; width: min(20vw, 320px); opacity: .5; transform: rotate(-2deg); }
 .g-skull { top: 4rem; right: 3.5%; width: min(11vw, 170px); opacity: .55; transform: rotate(2deg); }
-.g-chevrons { bottom: 18%; left: 5%; opacity: .16; transform: rotate(-2deg); }
+.g-crown { bottom: 16%; left: 5%; width: 110px; opacity: .5; transform: rotate(-3deg); }
 @media (max-width: 980px) { .greeble { display: none; } }
+
+/* ============ widget stamps (cropped from the sticker-sheet art) ============ */
+.widget { pointer-events: none; user-select: none; }
+.w-abs { position: absolute; }
+
+.w-shorsey { right: 6%; bottom: 14%; width: 150px; opacity: .6; transform: rotate(2deg); }
+
+.dossier-card .ribbons-img { width: min(320px, 70%); opacity: .8; margin-bottom: 1.5rem; }
+.w-compass { top: 2rem; right: 2.5rem; width: 120px; opacity: .4; transform: rotate(-3deg); }
+.w-lkp { right: 2.5rem; bottom: 2rem; width: 300px; opacity: .6; }
+
+.w-wheel { top: 4.5rem; right: 1rem; width: 180px; opacity: .55; transform: rotate(-2deg); }
+.stamp-row { display: flex; justify-content: center; align-items: center; gap: clamp(1.5rem, 5vw, 3.5rem); margin-top: 2.5rem; flex-wrap: wrap; }
+.stamp-row img { height: 84px; width: auto; opacity: .7; }
+
+.w-stayhidden { top: 4.2rem; right: 1rem; width: 200px; opacity: .5; transform: rotate(-1deg); }
+.slot .squatch { width: 150px; opacity: .55; }
+.slot .seen { width: 110px; opacity: .65; transform: rotate(-2deg); }
+
+.w-freq { top: 4rem; right: 1rem; width: 160px; opacity: .55; transform: rotate(2deg); }
+.w-callsign { width: 210px; opacity: .75; margin-bottom: 1.75rem; }
+
+.w-404 { width: 84px; opacity: .7; margin-inline: auto; margin-bottom: 1rem; }
+.w-tooclose { width: 160px; opacity: .65; margin-inline: auto; margin-top: 2rem; transform: rotate(-2deg); }
+
+@media (max-width: 1100px) { .w-abs { display: none; } }
 
 /* ============ responsive ============ */
 @media (max-width: 860px) {

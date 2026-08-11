@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title = 'Chuck Stalker',
-  description = 'Chuck Stalker — gaming persona. Precision, observation, execution. Extraction shooters, tactical FPS, and the occasional cooked grenade.',
+  description = 'Chuck Stalker — gaming persona. Playing since Atari, Battlefield since 1942. World of Tanks, Star Citizen, and every FPS with iron sights.',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -22,7 +22,7 @@ const personSchema = {
   name: 'Chuck Stalker',
   url: Astro.site?.href,
   image: ogImage,
-  description: 'Gaming persona. Precision, observation, execution.',
+  description: 'Gaming persona. Playing since Atari, Battlefield since 1942. World of Tanks, Star Citizen, first-person shooters.',
 };
 
 const websiteSchema = {
